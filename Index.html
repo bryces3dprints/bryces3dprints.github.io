@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bryce's 3D Prints</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black: #080808;
+      --white: #f4f2ee;
+      --accent: #ff3c00;
+      --gray: #141414;
+      --mid: #1e1e1e;
+      --border: #232323;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--black); color: var(--white); font-family: 'DM Sans', sans-serif; overflow-x: hidden; }
+
+```
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.2rem 3rem;
+  background: rgba(8,8,8,0.92); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.7rem; letter-spacing: 3px; color: var(--white); text-decoration: none; }
+.nav-logo span { color: var(--accent); }
+nav ul { list-style: none; display: flex; gap: 2.2rem; }
+nav ul a { text-decoration: none; color: #777; font-size: 0.8rem; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; transition: color 0.2s; }
+nav ul a:hover { color: var(--accent); }
+
+/* HERO */
+.hero {
+  min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
+  padding: 8rem 3rem 4rem; position: relative; overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0; pointer-events: none;
+  background: rgba(8,8,8,0.6);
+}
+.hero-grid {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image: linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 55px 55px;
+}
+.hero-content { position: relative; max-width: 1000px; }
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(255,60,0,0.1); border: 1px solid rgba(255,60,0,0.28);
+  color: var(--accent); font-size: 0.72rem; font-weight: 500;
+  letter-spacing: 2.5px; text-transform: uppercase; padding: 0.4rem 1rem;
+  margin-bottom: 1.8rem; animation: fadeUp 0.6s ease both;
+}
+.dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: pulse 1.5s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.7)} }
+h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(4.5rem, 13vw, 11rem); line-height: 0.9; letter-spacing: 3px;
+  margin-bottom: 1.8rem; animation: fadeUp 0.7s 0.1s ease both;
+}
+h1 .acc { color: var(--accent); text-shadow: 0 0 30px rgba(255,60,0,0.5); }
+h1 .out { color: #ffffff; font-weight: 900; }
+.hero-sub { font-size: 1.05rem; color: #888; font-weight: 300; max-width: 440px; line-height: 1.75; margin-bottom: 2.8rem; animation: fadeUp 0.7s 0.2s ease both; }
+.hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; animation: fadeUp 0.7s 0.3s ease both; }
+.btn-primary { background: var(--accent); color: var(--white); padding: 0.9rem 2.2rem; font-family: 'DM Sans',sans-serif; font-size: .85rem; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; border: none; cursor: pointer; text-decoration: none; display: inline-block; transition: opacity .2s, transform .2s; }
+.btn-primary:hover { opacity: .85; transform: translateY(-2px); }
+.btn-outline { background: transparent; color: var(--white); padding: 0.9rem 2.2rem; font-family: 'DM Sans',sans-serif; font-size: .85rem; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; border: 1px solid #333; cursor: pointer; text-decoration: none; display: inline-block; transition: border-color .2s, transform .2s; }
+.btn-outline:hover { border-color: var(--accent); transform: translateY(-2px); }
+.hero-scroll { position: absolute; bottom: 2.5rem; left: 3rem; display: flex; align-items: center; gap: .8rem; color: #444; font-size: .72rem; letter-spacing: 2px; text-transform: uppercase; animation: fadeUp 1s .5s ease both; }
+.scroll-line { width: 40px; height: 1px; background: #2a2a2a; position: relative; overflow: hidden; }
+.scroll-line::after { content:''; position:absolute; top:0; left:-100%; width:100%; height:100%; background:var(--accent); animation: scrollAnim 2s infinite; }
+@keyframes scrollAnim { 0%{left:-100%} 100%{left:100%} }
+
+/* STATS */
+.stats { background: var(--gray); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); display: flex; justify-content: center; flex-wrap: wrap; }
+.stat { padding: 2.2rem 3rem; text-align: center; border-right: 1px solid var(--border); flex: 1; min-width: 150px; }
+.stat:last-child { border-right: none; }
+.stat-num { font-family: 'Bebas Neue',sans-serif; font-size: 3rem; color: var(--accent); letter-spacing: 1px; line-height: 1; }
+.stat-label { font-size: .72rem; color: #555; letter-spacing: 1.5px; text-transform: uppercase; margin-top: .4rem; }
+
+/* SHARED SECTION */
+section { padding: 6rem 3rem; }
+.section-tag { font-size: .72rem; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); margin-bottom: .8rem; }
+.section-title { font-family: 'Bebas Neue',sans-serif; font-size: clamp(2.8rem,6vw,5.5rem); line-height: .95; letter-spacing: 2px; margin-bottom: 1.2rem; }
+.section-sub { color: #777; font-size: 1rem; font-weight: 300; max-width: 480px; line-height: 1.75; margin-bottom: 3.5rem; }
+
+/* SERVICES */
+#services { background: var(--black); }
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+.service-card { background: var(--gray); padding: 2.5rem 2rem; transition: background .2s; position: relative; overflow: hidden; }
+.service-card::before { content:''; position:absolute; top:0; left:0; width:3px; height:0; background:var(--accent); transition:height .3s ease; }
+.service-card:hover::before { height: 100%; }
+.service-card:hover { background: var(--mid); }
+.service-icon { font-size: 2rem; margin-bottom: 1.2rem; }
+.service-title { font-family: 'Bebas Neue',sans-serif; font-size: 1.6rem; letter-spacing: 1px; margin-bottom: .8rem; }
+.service-desc { color: #666; font-size: .9rem; line-height: 1.7; font-weight: 300; }
+
+/* COLORS */
+#colors { background: var(--gray); }
+.color-swatches { display: flex; flex-wrap: wrap; gap: 1.2rem; }
+.swatch { display: flex; flex-direction: column; align-items: center; gap: .6rem; cursor: pointer; }
+.swatch-circle { width: 58px; height: 58px; border-radius: 50%; border: 2px solid transparent; transition: transform .2s, border-color .2s; box-shadow: 0 4px 16px rgba(0,0,0,.45); }
+.swatch:hover .swatch-circle { transform: scale(1.15) translateY(-3px); border-color: var(--accent); }
+.swatch-name { font-size: .68rem; letter-spacing: 1px; text-transform: uppercase; color: #555; }
+
+/* WHY */
+#why { background: var(--black); }
+.why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); max-width: 900px; }
+.why-card { background: var(--gray); padding: 2.5rem; transition: background .2s; }
+.why-card:hover { background: var(--mid); }
+.why-num { font-family: 'Bebas Neue',sans-serif; font-size: 3.5rem; color: rgba(255,60,0,.13); line-height: 1; margin-bottom: .5rem; }
+.why-title { font-family: 'Bebas Neue',sans-serif; font-size: 1.5rem; letter-spacing: 1px; margin-bottom: .7rem; }
+.why-desc { color: #666; font-size: .88rem; line-height: 1.7; font-weight: 300; }
+
+/* CONTACT */
+#contact { background: var(--gray); border-top: 1px solid var(--border); }
+.contact-inner { display: flex; gap: 4rem; flex-wrap: wrap; align-items: flex-start; }
+.contact-left, .contact-right { flex: 1; min-width: 280px; }
+.contact-item { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.8rem; }
+.contact-icon { font-size: 1.3rem; margin-top: .1rem; }
+.contact-label { font-size: .7rem; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: .2rem; }
+.contact-value { font-size: .95rem; color: #bbb; font-weight: 300; }
+.form-group { margin-bottom: 1.2rem; }
+.form-group input, .form-group textarea { width: 100%; background: var(--mid); border: 1px solid var(--border); color: var(--white); padding: .9rem 1.2rem; font-family: 'DM Sans',sans-serif; font-size: .9rem; outline: none; transition: border-color .2s; resize: vertical; }
+.form-group input::placeholder, .form-group textarea::placeholder { color: #444; }
+.form-group input:focus, .form-group textarea:focus { border-color: var(--accent); }
+.form-group textarea { min-height: 110px; }
+
+/* FOOTER */
+footer { background: var(--black); border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+.footer-logo { font-family: 'Bebas Neue',sans-serif; font-size: 1.3rem; letter-spacing: 2px; color: #444; }
+.footer-logo span { color: var(--accent); }
+.footer-copy { font-size: .75rem; color: #444; letter-spacing: 1px; }
+
+@keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+
+@media (max-width: 700px) {
+  nav { padding: 1rem 1.5rem; }
+  nav ul { gap: 1rem; }
+  .hero { padding: 7rem 1.5rem 3rem; }
+  section { padding: 4rem 1.5rem; }
+  .why-grid { grid-template-columns: 1fr; }
+  footer { padding: 1.5rem; }
+}
+```
+
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="#"><span>B</span>ryce's 3D Prints</a>
+    <ul>
+      <li><a href="#services" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'}); return false;">Services</a></li>
+      <li><a href="#colors" onclick="document.getElementById('colors').scrollIntoView({behavior:'smooth'}); return false;">Colors</a></li>
+      <li><a href="#why" onclick="document.getElementById('why').scrollIntoView({behavior:'smooth'}); return false;">Why Us</a></li>
+      <li><a href="#contact" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'}); return false;">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+      <div class="hero-tag"><div class="dot"></div> Custom 3D Printing — Open for Orders</div>
+      <h1 style="color:#ffffff; text-shadow: 2px 2px 0px rgba(0,0,0,0.9), 0 0 60px rgba(0,0,0,1);">BRYCE'S<br><span class="acc">3D</span> PRINTS</h1>
+      <p class="hero-sub">High-quality custom 3D printed products made to order. Strong filament, vibrant colors, fast turnaround — built for people who want it done right.</p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'}); return false;">Order Now</a>
+        <a href="#services" class="btn-outline" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'}); return false;">See What We Make</a>
+      </div>
+    </div>
+    <div class="hero-scroll"><div class="scroll-line"></div> Scroll to explore</div>
+  </section>
+
+  <div class="stats">
+    <div class="stat"><div class="stat-num">4</div><div class="stat-label">Colors Available</div></div>
+    <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Custom Orders</div></div>
+    <div class="stat"><div class="stat-num">PLA+</div><div class="stat-label">Strong Filament</div></div>
+    <div class="stat"><div class="stat-num">Fast</div><div class="stat-label">Turnaround</div></div>
+  </div>
+
+  <section id="services">
+    <div class="section-tag">What We Do</div>
+    <div class="section-title">Our Services</div>
+    <p class="section-sub">From one-off custom pieces to bulk business orders — we print it all with precision and care.</p>
+    <div class="services-grid">
+      <div class="service-card"><div class="service-icon">🎨</div><div class="service-title">Custom Prints</div><p class="service-desc">Got an idea? We'll bring it to life! From simple designs to fun figures and small items — we do our best to make exactly what you need.</p></div>
+      <div class="service-card"><div class="service-icon">🧸</div><div class="service-title">Toys & Fun Stuff</div><p class="service-desc">Toys, figures, mini games and more — perfect for kids or anyone who wants something fun and unique printed just for them.</p></div>
+      <div class="service-card"><div class="service-icon">🥤</div><div class="service-title">Useful Everyday Items</div><p class="service-desc">Can coolers, AirPod cases, small organizers and more — handy little items that are actually useful in daily life.</p></div>
+      <div class="service-card"><div class="service-icon">✨</div><div class="service-title">Decorative Pieces</div><p class="service-desc">Figurines, keychains, display items — small decorative prints that look great and make awesome gifts.</p></div>
+    </div>
+  </section>
+
+  <section id="colors">
+    <div class="section-tag">Material & Colors</div>
+    <div class="section-title">4 Colors Available</div>
+    <p class="section-sub">We currently print in 4 colors — more coming as the business grows!</p>
+    <div class="color-swatches">
+      <div class="swatch"><div class="swatch-circle" style="background:#111;border-color:#333;"></div><span class="swatch-name">Black</span></div>
+      <div class="swatch"><div class="swatch-circle" style="background:#f0ede6;"></div><span class="swatch-name">White</span></div>
+      <div class="swatch"><div class="swatch-circle" style="background:#888;"></div><span class="swatch-name">Gray</span></div>
+      <div class="swatch"><div class="swatch-circle" style="background:#d42b2b;"></div><span class="swatch-name">Red</span></div>
+    </div>
+  </section>
+
+  <section id="why">
+    <div class="section-tag">Why Choose Us</div>
+    <div class="section-title">Built Different</div>
+    <p class="section-sub">We take 3D printing seriously. Here's what sets us apart.</p>
+    <div class="why-grid">
+      <div class="why-card"><div class="why-num">01</div><div class="why-title">Strong Filament</div><p class="why-desc">We only use PLA+ — tougher and more durable than regular PLA. No brittle prints, no breaks mid-tube.</p></div>
+      <div class="why-card"><div class="why-num">02</div><div class="why-title">10 Color Options</div><p class="why-desc">Currently available in black, white, gray, and red — more colors coming soon as the business grows!</p></div>
+      <div class="why-card"><div class="why-num">03</div><div class="why-title">Toys & Useful Items</div><p class="why-desc">From fun toys for kids to handy everyday items like can coolers and AirPod cases — if it can be printed, we'll make it for you.</p></div>
+      <div class="why-card"><div class="why-num">04</div><div class="why-title">Affordable Pricing</div><p class="why-desc">Quality printing doesn't have to cost a fortune. We keep prices fair so you can order more and spend less.</p></div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="section-tag">Get In Touch</div>
+    <div class="section-title">Place an Order</div>
+    <p class="section-sub">Ready to print? Fill out the form or reach out directly and we'll get back to you fast.</p>
+    <div class="contact-inner">
+      <div class="contact-left">
+        <div class="contact-item"><div class="contact-icon">📧</div><div><div class="contact-label">Email</div><div class="contact-value">brycepheasant@icloud.com</div></div></div>
+      </div>
+      <div class="contact-right"><form action="https://formspree.io/f/xpqbrpll" method="POST">
+        <div class="form-group"><input type="text" name="name" placeholder="Your Name" /></div>
+        <div class="form-group"><input type="email" name="email" placeholder="Your Email" /></div>
+        <div class="form-group"><input type="text" name="item" placeholder="What do you need printed?" /></div>
+        <div class="form-group"><textarea name="message" placeholder="Tell us more — color, quantity, size, any details..."></textarea></div>
+        <button type="submit" class="btn-primary" style="width:100%;">Send Order Request</button></form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo"><span>B</span>ryce's 3D Prints</div>
+    <div class="footer-copy">© 2026 Bryce's 3D Prints · All rights reserved</div>
+  </footer>
+
+</body>
+</html>

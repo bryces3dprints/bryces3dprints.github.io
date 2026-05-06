@@ -159,7 +159,7 @@ footer { background: var(--black); border-top: 1px solid var(--border); padding:
     <ul>
       <li><a href="#services" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'}); return false;">Services</a></li>
       <li><a href="#colors" onclick="document.getElementById('colors').scrollIntoView({behavior:'smooth'}); return false;">Colors</a></li>
-      <li><a href="#why" onclick="document.getElementById('why').scrollIntoView({behavior:'smooth'}); return false;">Why Us</a></li>
+      <li><a href="#gallery" onclick="document.getElementById('gallery').scrollIntoView({behavior:'smooth'}); return false;">Gallery</a></li><li><a href="#menu" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'}); return false;">Menu</a></li><li><a href="#why" onclick="document.getElementById('why').scrollIntoView({behavior:'smooth'}); return false;">Why Us</a></li>
       <li><a href="#contact" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'}); return false;">Contact</a></li>
     </ul>
   </nav>
@@ -210,6 +210,85 @@ footer { background: var(--black); border-top: 1px solid var(--border); padding:
       <div class="swatch"><div class="swatch-circle" style="background:#888;"></div><span class="swatch-name">Gray</span></div>
       <div class="swatch"><div class="swatch-circle" style="background:#d42b2b;"></div><span class="swatch-name">Red</span></div>
     </div>
+  </section>
+
+  <!-- GALLERY -->
+
+  <section id="gallery" style="background: var(--gray); border-top: 1px solid var(--border);">
+    <div class="section-tag">Our Work</div>
+    <div class="section-title">See What We Make</div>
+    <p class="section-sub">Real prints, real quality — all available in black, white, gray, or red.</p>
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap:1rem;">
+      <div style="position:relative; overflow:hidden; background:var(--mid); border:1px solid var(--border);">
+        <img src="https://i.postimg.cc/D4zR7Wx1/IMG-5395.jpg" alt="Articulated Lizard" style="width:100%; height:220px; object-fit:cover; display:block; transition:transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"/>
+        <div style="padding:1rem;"><div style="font-family:'Bebas Neue',sans-serif; font-size:1.2rem; letter-spacing:1px;">Articulated Lizard</div><div style="color:var(--accent); font-family:'Bebas Neue',sans-serif; font-size:1.1rem;">$2</div></div>
+      </div>
+      <div style="position:relative; overflow:hidden; background:var(--mid); border:1px solid var(--border);">
+        <img src="https://i.postimg.cc/7JLjqCKP/IMG-5396.jpg" alt="Keyboard Clicker Keychain 2 Block" style="width:100%; height:220px; object-fit:cover; display:block; transition:transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"/>
+        <div style="padding:1rem;"><div style="font-family:'Bebas Neue',sans-serif; font-size:1.2rem; letter-spacing:1px;">Keyboard Clicker Keychain (2 Block)</div><div style="color:var(--accent); font-family:'Bebas Neue',sans-serif; font-size:1.1rem;">$1</div></div>
+      </div>
+      <div style="position:relative; overflow:hidden; background:var(--mid); border:1px solid var(--border);">
+        <img src="https://i.postimg.cc/tng891B3/IMG-5397.jpg" alt="Keyboard Clicker Keychain 3 Block" style="width:100%; height:220px; object-fit:cover; display:block; transition:transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"/>
+        <div style="padding:1rem;"><div style="font-family:'Bebas Neue',sans-serif; font-size:1.2rem; letter-spacing:1px;">Keyboard Clicker Keychain (3 Block)</div><div style="color:var(--accent); font-family:'Bebas Neue',sans-serif; font-size:1.1rem;">$1</div></div>
+      </div>
+      <div style="position:relative; overflow:hidden; background:var(--mid); border:1px solid var(--border);">
+        <img src="https://i.postimg.cc/V0N2zSKn/IMG-5398.jpg" alt="Keyboard Clicker Keychain 4 Block" style="width:100%; height:220px; object-fit:cover; display:block; transition:transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"/>
+        <div style="padding:1rem;"><div style="font-family:'Bebas Neue',sans-serif; font-size:1.2rem; letter-spacing:1px;">Keyboard Clicker Keychain (4 Block)</div><div style="color:var(--accent); font-family:'Bebas Neue',sans-serif; font-size:1.1rem;">$1</div></div>
+      </div>
+      <div style="position:relative; overflow:hidden; background:var(--mid); border:1px solid var(--border);">
+        <img src="https://i.postimg.cc/m1rKTcm3/IMG-5399.jpg" alt="Cat Figurine" style="width:100%; height:220px; object-fit:cover; display:block; transition:transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"/>
+        <div style="padding:1rem;"><div style="font-family:'Bebas Neue',sans-serif; font-size:1.2rem; letter-spacing:1px;">Cat Figurine</div><div style="color:var(--accent); font-family:'Bebas Neue',sans-serif; font-size:1.1rem;">$2</div></div>
+      </div>
+      <div style="position:relative; overflow:hidden; background:var(--mid); border:1px solid var(--border);">
+        <img src="https://i.postimg.cc/hh4kLwKR/IMG-5400.jpg" alt="Deer Figurine" style="width:100%; height:220px; object-fit:cover; display:block; transition:transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"/>
+        <div style="padding:1rem;"><div style="font-family:'Bebas Neue',sans-serif; font-size:1.2rem; letter-spacing:1px;">Deer Figurine</div><div style="color:var(--accent); font-family:'Bebas Neue',sans-serif; font-size:1.1rem;">$2</div></div>
+      </div>
+      <div style="position:relative; overflow:hidden; background:var(--mid); border:1px solid var(--border);">
+        <img src="https://i.postimg.cc/14RkGTyR/IMG-5401.jpg" alt="Aircraft Carrier" style="width:100%; height:220px; object-fit:cover; display:block; transition:transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"/>
+        <div style="padding:1rem;"><div style="font-family:'Bebas Neue',sans-serif; font-size:1.2rem; letter-spacing:1px;">Aircraft Carrier</div><div style="color:var(--accent); font-family:'Bebas Neue',sans-serif; font-size:1.1rem;">$3</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU -->
+
+  <section id="menu" style="background: var(--black); border-top: 1px solid var(--border);">
+    <div class="section-tag">Pricing</div>
+    <div class="section-title">Our Menu</div>
+    <p class="section-sub">All items available in black, white, gray, or red. Just mention your color in the order form!</p>
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap:1px; background:var(--border); border:1px solid var(--border); max-width:900px;">
+      <div style="background:var(--gray); padding:2rem;">
+        <div style="font-size:1.8rem; margin-bottom:0.8rem;">🎹</div>
+        <div style="font-family:'Bebas Neue',sans-serif; font-size:1.4rem; letter-spacing:1px; margin-bottom:0.5rem;">Keyboard Clicker Keychain</div>
+        <div style="font-family:'Bebas Neue',sans-serif; font-size:2rem; color:var(--accent); margin-bottom:0.5rem;">$1</div>
+        <p style="color:#666; font-size:0.85rem; line-height:1.6;">Want fewer or more clicker blocks? Just mention it in the order form!</p>
+      </div>
+      <div style="background:var(--gray); padding:2rem;">
+        <div style="font-size:1.8rem; margin-bottom:0.8rem;">🦎</div>
+        <div style="font-family:'Bebas Neue',sans-serif; font-size:1.4rem; letter-spacing:1px; margin-bottom:0.5rem;">Articulated Lizard</div>
+        <div style="font-family:'Bebas Neue',sans-serif; font-size:2rem; color:var(--accent); margin-bottom:0.5rem;">$2</div>
+        <p style="color:#666; font-size:0.85rem; line-height:1.6;">Flexible and fun — great for kids and desk toys.</p>
+      </div>
+      <div style="background:var(--gray); padding:2rem;">
+        <div style="font-size:1.8rem; margin-bottom:0.8rem;">🐱</div>
+        <div style="font-family:'Bebas Neue',sans-serif; font-size:1.4rem; letter-spacing:1px; margin-bottom:0.5rem;">Cat Figurine</div>
+        <div style="font-family:'Bebas Neue',sans-serif; font-size:2rem; color:var(--accent); margin-bottom:0.5rem;">$2</div>
+        <p style="color:#666; font-size:0.85rem; line-height:1.6;">A detailed cat figurine — perfect as a gift or display piece.</p>
+      </div>
+      <div style="background:var(--gray); padding:2rem;">
+        <div style="font-size:1.8rem; margin-bottom:0.8rem;">🦌</div>
+        <div style="font-family:'Bebas Neue',sans-serif; font-size:1.4rem; letter-spacing:1px; margin-bottom:0.5rem;">Deer Figurine</div>
+        <div style="font-family:'Bebas Neue',sans-serif; font-size:2rem; color:var(--accent); margin-bottom:0.5rem;">$2</div>
+        <p style="color:#666; font-size:0.85rem; line-height:1.6;">A beautiful deer figurine — great for decoration or as a unique gift.</p>
+      </div>
+      <div style="background:var(--gray); padding:2rem;">
+        <div style="font-size:1.8rem; margin-bottom:0.8rem;">🚢</div>
+        <div style="font-family:'Bebas Neue',sans-serif; font-size:1.4rem; letter-spacing:1px; margin-bottom:0.5rem;">Aircraft Carrier</div>
+        <div style="font-family:'Bebas Neue',sans-serif; font-size:2rem; color:var(--accent); margin-bottom:0.5rem;">$3</div>
+        <p style="color:#666; font-size:0.85rem; line-height:1.6;">A detailed miniature aircraft carrier — perfect for collectors and military fans.</p>
+      </div>
+    </div>
+    <p style="margin-top:2rem; color:#666; font-size:0.85rem;">Don't see what you want? <a href="#contact" style="color:var(--accent);" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'}); return false;">Send us a custom order!</a></p>
   </section>
 
   <section id="why">

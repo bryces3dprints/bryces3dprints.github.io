@@ -178,7 +178,42 @@ footer { background: var(--black); border-top: 1px solid var(--border); padding:
   section { padding: 4rem 1.5rem; }
   .why-grid { grid-template-columns: 1fr; }
   footer { padding: 1.5rem; }
+  .sidebar { display: none; }
 }
+
+/* SIDEBAR */
+.sidebar {
+  position: fixed; top: 50%; right: 0; transform: translateY(-50%);
+  z-index: 99;
+  display: flex; flex-direction: column;
+  background: rgba(8,8,8,0.92);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  border-right: none;
+  border-radius: 6px 0 0 6px;
+  overflow: hidden;
+}
+.sidebar a {
+  display: flex; align-items: center;
+  padding: 0.8rem 0.9rem;
+  color: #555;
+  text-decoration: none;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  max-width: 2.8rem;
+  overflow: hidden;
+  transition: color .2s, max-width .3s ease, padding .3s ease, background .2s;
+  border-left: 2px solid transparent;
+}
+.sidebar a .sb-icon { font-size: 0.95rem; flex-shrink: 0; margin-right: 0.75rem; }
+.sidebar a .sb-label { opacity: 0; transition: opacity .2s ease; }
+.sidebar:hover a { max-width: 160px; padding: 0.8rem 1.1rem; }
+.sidebar:hover a .sb-label { opacity: 1; }
+.sidebar a:hover { color: var(--white); background: rgba(255,60,0,0.07); }
+.sidebar a.active { color: var(--accent); border-left-color: var(--accent); }
 ```
 
   </style>
@@ -198,6 +233,17 @@ footer { background: var(--black); border-top: 1px solid var(--border); padding:
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
+
+  <!-- SIDEBAR -->
+
+  <aside class="sidebar" id="sidebar">
+    <a href="#services" data-section="services"><span class="sb-icon">🎨</span><span class="sb-label">Services</span></a>
+    <a href="#colors" data-section="colors"><span class="sb-icon">🎨</span><span class="sb-label">Colors</span></a>
+    <a href="#gallery" data-section="gallery"><span class="sb-icon">🖼</span><span class="sb-label">Gallery</span></a>
+    <a href="#menu" data-section="menu"><span class="sb-icon">📋</span><span class="sb-label">Menu</span></a>
+    <a href="#why" data-section="why"><span class="sb-icon">⭐</span><span class="sb-label">Why Us</span></a>
+    <a href="#contact" data-section="contact"><span class="sb-icon">📧</span><span class="sb-label">Contact</span></a>
+  </aside>
 
   <!-- HERO -->
 
@@ -375,6 +421,23 @@ footer { background: var(--black); border-top: 1px solid var(--border); padding:
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
     }, { threshold: 0.1 });
     reveals.forEach(r => obs.observe(r));
+
+    // Sidebar active section highlight
+    const sections = ['services','colors','gallery','menu','why','contact'];
+    const sidebarLinks = document.querySelectorAll('.sidebar a');
+    const sectionObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          sidebarLinks.forEach(a => a.classList.remove('active'));
+          const active = document.querySelector(`.sidebar a[data-section="${entry.target.id}"]`);
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { threshold: 0.4 });
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) sectionObserver.observe(el);
+    });
 
     // Form validation
     document.getElementById('order-form').addEventListener('submit', function(e) {

@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="en">
 <head>
@@ -39,15 +39,17 @@ nav ul a:hover { color: var(--accent); }
   min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
   padding: 8rem 3rem 4rem; position: relative; overflow: hidden;
 }
-.hero-bg {
-  position: absolute; inset: 0; pointer-events: none;
-  background: rgba(8,8,8,0.6);
-}
+.hero-bg { position: absolute; inset: 0; pointer-events: none; background: rgba(8,8,8,0.6); }
 .hero-grid {
   position: absolute; inset: 0; pointer-events: none;
   background-image: linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
                     linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
   background-size: 55px 55px;
+}
+/* Subtle accent glow */
+.hero-glow {
+  position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 55% 55% at 75% 45%, rgba(255,60,0,0.13) 0%, transparent 70%);
 }
 .hero-content { position: relative; max-width: 1000px; }
 .hero-tag {
@@ -65,7 +67,6 @@ h1 {
   margin-bottom: 1.8rem; animation: fadeUp 0.7s 0.1s ease both;
 }
 h1 .acc { color: var(--accent); text-shadow: 0 0 30px rgba(255,60,0,0.5); }
-h1 .out { color: #ffffff; font-weight: 900; }
 .hero-sub { font-size: 1.05rem; color: #888; font-weight: 300; max-width: 440px; line-height: 1.75; margin-bottom: 2.8rem; animation: fadeUp 0.7s 0.2s ease both; }
 .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; animation: fadeUp 0.7s 0.3s ease both; }
 .btn-primary { background: var(--accent); color: var(--white); padding: 0.9rem 2.2rem; font-family: 'DM Sans',sans-serif; font-size: .85rem; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; border: none; cursor: pointer; text-decoration: none; display: inline-block; transition: opacity .2s, transform .2s; }
@@ -109,6 +110,30 @@ section { padding: 6rem 3rem; }
 .swatch:hover .swatch-circle { transform: scale(1.15) translateY(-3px); border-color: var(--accent); }
 .swatch-name { font-size: .68rem; letter-spacing: 1px; text-transform: uppercase; color: #555; }
 
+/* GALLERY */
+#gallery { background: var(--gray); border-top: 1px solid var(--border); }
+.gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 1rem; }
+.gallery-card { position: relative; overflow: hidden; background: var(--mid); border: 1px solid var(--border); transition: border-color .25s; }
+.gallery-card:hover { border-color: rgba(255,60,0,0.4); }
+.gallery-card img { width: 100%; height: 220px; object-fit: cover; display: block; transition: transform 0.35s ease; }
+.gallery-card:hover img { transform: scale(1.05); }
+.gallery-info { padding: 1rem 1.2rem 1.2rem; display: flex; justify-content: space-between; align-items: center; }
+.gallery-name { font-family: 'Bebas Neue',sans-serif; font-size: 1.2rem; letter-spacing: 1px; }
+.gallery-price { font-family: 'Bebas Neue',sans-serif; font-size: 1.3rem; color: var(--accent); }
+
+/* MENU */
+#menu { background: var(--black); border-top: 1px solid var(--border); }
+.menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); max-width: 900px; }
+.menu-card { background: var(--gray); padding: 2rem; transition: background .2s; }
+.menu-card:hover { background: var(--mid); }
+.menu-icon { font-size: 1.8rem; margin-bottom: 0.8rem; }
+.menu-name { font-family: 'Bebas Neue',sans-serif; font-size: 1.4rem; letter-spacing: 1px; margin-bottom: 0.5rem; }
+.menu-price { font-family: 'Bebas Neue',sans-serif; font-size: 2rem; color: var(--accent); margin-bottom: 0.5rem; }
+.menu-desc { color: #666; font-size: 0.85rem; line-height: 1.6; }
+.menu-note { margin-top: 2rem; color: #666; font-size: 0.85rem; }
+.menu-note a { color: var(--accent); text-decoration: none; }
+.menu-note a:hover { text-decoration: underline; }
+
 /* WHY */
 #why { background: var(--black); }
 .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); max-width: 900px; }
@@ -131,6 +156,7 @@ section { padding: 6rem 3rem; }
 .form-group input::placeholder, .form-group textarea::placeholder { color: #444; }
 .form-group input:focus, .form-group textarea:focus { border-color: var(--accent); }
 .form-group textarea { min-height: 110px; }
+#form-error { color: var(--accent); font-size: 0.85rem; margin-bottom: 0.8rem; display: none; }
 
 /* FOOTER */
 footer { background: var(--black); border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
@@ -140,9 +166,14 @@ footer { background: var(--black); border-top: 1px solid var(--border); padding:
 
 @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
 
+/* REVEAL */
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
 @media (max-width: 700px) {
   nav { padding: 1rem 1.5rem; }
   nav ul { gap: 1rem; }
+  nav ul a { font-size: 0.65rem; letter-spacing: 1px; }
   .hero { padding: 7rem 1.5rem 3rem; }
   section { padding: 4rem 1.5rem; }
   .why-grid { grid-template-columns: 1fr; }
@@ -154,43 +185,54 @@ footer { background: var(--black); border-top: 1px solid var(--border); padding:
 </head>
 <body>
 
+  <!-- NAV -->
+
   <nav>
     <a class="nav-logo" href="#"><span>B</span>ryce's 3D Prints</a>
     <ul>
-      <li><a href="#services" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'}); return false;">Services</a></li>
-      <li><a href="#colors" onclick="document.getElementById('colors').scrollIntoView({behavior:'smooth'}); return false;">Colors</a></li>
-      <li><a href="#gallery" onclick="document.getElementById('gallery').scrollIntoView({behavior:'smooth'}); return false;">Gallery</a></li><li><a href="#menu" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'}); return false;">Menu</a></li><li><a href="#why" onclick="document.getElementById('why').scrollIntoView({behavior:'smooth'}); return false;">Why Us</a></li>
-      <li><a href="#contact" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'}); return false;">Contact</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#colors">Colors</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#why">Why Us</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
+
+  <!-- HERO -->
 
   <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-grid"></div>
+    <div class="hero-glow"></div>
     <div class="hero-content">
       <div class="hero-tag"><div class="dot"></div> Custom 3D Printing — Open for Orders</div>
-      <h1 style="color:#ffffff; text-shadow: 2px 2px 0px rgba(0,0,0,0.9), 0 0 60px rgba(0,0,0,1);">BRYCE'S<br><span class="acc">3D</span> PRINTS</h1>
+      <h1>BRYCE'S<br><span class="acc">3D</span> PRINTS</h1>
       <p class="hero-sub">High-quality custom 3D printed products made to order. Strong filament, vibrant colors, fast turnaround — built for people who want it done right.</p>
       <div class="hero-btns">
-        <a href="#contact" class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'}); return false;">Order Now</a>
-        <a href="#services" class="btn-outline" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'}); return false;">See What We Make</a>
+        <a href="#contact" class="btn-primary">Order Now</a>
+        <a href="#services" class="btn-outline">See What We Make</a>
       </div>
     </div>
     <div class="hero-scroll"><div class="scroll-line"></div> Scroll to explore</div>
   </section>
 
+  <!-- STATS -->
+
   <div class="stats">
     <div class="stat"><div class="stat-num">4</div><div class="stat-label">Colors Available</div></div>
     <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Custom Orders</div></div>
-    <div class="stat"><div class="stat-num">PLA+</div><div class="stat-label">Strong Filament</div></div>
+    <div class="stat"><div class="stat-num">PLA</div><div class="stat-label">Filament</div></div>
     <div class="stat"><div class="stat-num">Fast</div><div class="stat-label">Turnaround</div></div>
   </div>
 
+  <!-- SERVICES -->
+
   <section id="services">
-    <div class="section-tag">What We Do</div>
-    <div class="section-title">Our Services</div>
-    <p class="section-sub">From one-off custom pieces to bulk business orders — we print it all with precision and care.</p>
-    <div class="services-grid">
+    <div class="section-tag reveal">What We Do</div>
+    <div class="section-title reveal">Our Services</div>
+    <p class="section-sub reveal">From one-off custom pieces to bulk business orders — we print it all with precision and care.</p>
+    <div class="services-grid reveal">
       <div class="service-card"><div class="service-icon">🎨</div><div class="service-title">Custom Prints</div><p class="service-desc">Got an idea? We'll bring it to life! From simple designs to fun figures and small items — we do our best to make exactly what you need.</p></div>
       <div class="service-card"><div class="service-icon">🧸</div><div class="service-title">Toys & Fun Stuff</div><p class="service-desc">Toys, figures, mini games and more — perfect for kids or anyone who wants something fun and unique printed just for them.</p></div>
       <div class="service-card"><div class="service-icon">🥤</div><div class="service-title">Useful Everyday Items</div><p class="service-desc">Can coolers, AirPod cases, small organizers and more — handy little items that are actually useful in daily life.</p></div>
@@ -200,11 +242,13 @@ footer { background: var(--black); border-top: 1px solid var(--border); padding:
     </div>
   </section>
 
+  <!-- COLORS -->
+
   <section id="colors">
-    <div class="section-tag">Material & Colors</div>
-    <div class="section-title">4 Colors Available</div>
-    <p class="section-sub">We currently print in 4 colors — more coming as the business grows!</p>
-    <div class="color-swatches">
+    <div class="section-tag reveal">Material & Colors</div>
+    <div class="section-title reveal">4 Colors Available</div>
+    <p class="section-sub reveal">We currently print in 4 colors — more coming as the business grows!</p>
+    <div class="color-swatches reveal">
       <div class="swatch"><div class="swatch-circle" style="background:#111;border-color:#333;"></div><span class="swatch-name">Black</span></div>
       <div class="swatch"><div class="swatch-circle" style="background:#f0ede6;"></div><span class="swatch-name">White</span></div>
       <div class="swatch"><div class="swatch-circle" style="background:#888;"></div><span class="swatch-name">Gray</span></div>
@@ -214,134 +258,143 @@ footer { background: var(--black); border-top: 1px solid var(--border); padding:
 
   <!-- GALLERY -->
 
-  <section id="gallery" style="background: var(--gray); border-top: 1px solid var(--border);">
-    <div class="section-tag">Our Work</div>
-    <div class="section-title">See What We Make</div>
-    <p class="section-sub">Real prints, real quality — all available in black, white, gray, or red.</p>
-    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap:1rem;">
-      <div style="position:relative; overflow:hidden; background:var(--mid); border:1px solid var(--border);">
-        <img src="https://i.postimg.cc/D4zR7Wx1/IMG-5395.jpg" alt="Articulated Lizard" style="width:100%; height:220px; object-fit:cover; display:block; transition:transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"/>
-        <div style="padding:1rem;"><div style="font-family:'Bebas Neue',sans-serif; font-size:1.2rem; letter-spacing:1px;">Articulated Lizard</div><div style="color:var(--accent); font-family:'Bebas Neue',sans-serif; font-size:1.1rem;">$2</div></div>
+  <section id="gallery">
+    <div class="section-tag reveal">Our Work</div>
+    <div class="section-title reveal">See What We Make</div>
+    <p class="section-sub reveal">Real prints, real quality — all available in black, white, gray, or red.</p>
+    <div class="gallery-grid reveal">
+      <div class="gallery-card">
+        <img src="https://i.postimg.cc/D4zR7Wx1/IMG-5395.jpg" alt="Articulated Lizard"/>
+        <div class="gallery-info"><span class="gallery-name">Articulated Lizard</span><span class="gallery-price">$2</span></div>
       </div>
-      <div style="position:relative; overflow:hidden; background:var(--mid); border:1px solid var(--border);">
-        <img src="https://i.postimg.cc/7JLjqCKP/IMG-5396.jpg" alt="Keyboard Clicker Keychain 2 Block" style="width:100%; height:220px; object-fit:cover; display:block; transition:transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"/>
-        <div style="padding:1rem;"><div style="font-family:'Bebas Neue',sans-serif; font-size:1.2rem; letter-spacing:1px;">Keyboard Clicker Keychain (2 Block)</div><div style="color:var(--accent); font-family:'Bebas Neue',sans-serif; font-size:1.1rem;">$1</div></div>
+      <div class="gallery-card">
+        <img src="https://i.postimg.cc/7JLjqCKP/IMG-5396.jpg" alt="Keyboard Clicker Keychain 2 Block"/>
+        <div class="gallery-info"><span class="gallery-name">Keyboard Clicker Keychain (2 Block)</span><span class="gallery-price">$1</span></div>
       </div>
-      <div style="position:relative; overflow:hidden; background:var(--mid); border:1px solid var(--border);">
-        <img src="https://i.postimg.cc/tng891B3/IMG-5397.jpg" alt="Keyboard Clicker Keychain 3 Block" style="width:100%; height:220px; object-fit:cover; display:block; transition:transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"/>
-        <div style="padding:1rem;"><div style="font-family:'Bebas Neue',sans-serif; font-size:1.2rem; letter-spacing:1px;">Keyboard Clicker Keychain (3 Block)</div><div style="color:var(--accent); font-family:'Bebas Neue',sans-serif; font-size:1.1rem;">$1</div></div>
+      <div class="gallery-card">
+        <img src="https://i.postimg.cc/tng891B3/IMG-5397.jpg" alt="Keyboard Clicker Keychain 3 Block"/>
+        <div class="gallery-info"><span class="gallery-name">Keyboard Clicker Keychain (3 Block)</span><span class="gallery-price">$1</span></div>
       </div>
-      <div style="position:relative; overflow:hidden; background:var(--mid); border:1px solid var(--border);">
-        <img src="https://i.postimg.cc/V0N2zSKn/IMG-5398.jpg" alt="Keyboard Clicker Keychain 4 Block" style="width:100%; height:220px; object-fit:cover; display:block; transition:transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"/>
-        <div style="padding:1rem;"><div style="font-family:'Bebas Neue',sans-serif; font-size:1.2rem; letter-spacing:1px;">Keyboard Clicker Keychain (4 Block)</div><div style="color:var(--accent); font-family:'Bebas Neue',sans-serif; font-size:1.1rem;">$1</div></div>
+      <div class="gallery-card">
+        <img src="https://i.postimg.cc/V0N2zSKn/IMG-5398.jpg" alt="Keyboard Clicker Keychain 4 Block"/>
+        <div class="gallery-info"><span class="gallery-name">Keyboard Clicker Keychain (4 Block)</span><span class="gallery-price">$1</span></div>
       </div>
-      <div style="position:relative; overflow:hidden; background:var(--mid); border:1px solid var(--border);">
-        <img src="https://i.postimg.cc/m1rKTcm3/IMG-5399.jpg" alt="Cat Figurine" style="width:100%; height:220px; object-fit:cover; display:block; transition:transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"/>
-        <div style="padding:1rem;"><div style="font-family:'Bebas Neue',sans-serif; font-size:1.2rem; letter-spacing:1px;">Cat Figurine</div><div style="color:var(--accent); font-family:'Bebas Neue',sans-serif; font-size:1.1rem;">$2</div></div>
+      <div class="gallery-card">
+        <img src="https://i.postimg.cc/m1rKTcm3/IMG-5399.jpg" alt="Cat Figurine"/>
+        <div class="gallery-info"><span class="gallery-name">Cat Figurine</span><span class="gallery-price">$2</span></div>
       </div>
-      <div style="position:relative; overflow:hidden; background:var(--mid); border:1px solid var(--border);">
-        <img src="https://i.postimg.cc/hh4kLwKR/IMG-5400.jpg" alt="Deer Figurine" style="width:100%; height:220px; object-fit:cover; display:block; transition:transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"/>
-        <div style="padding:1rem;"><div style="font-family:'Bebas Neue',sans-serif; font-size:1.2rem; letter-spacing:1px;">Deer Figurine</div><div style="color:var(--accent); font-family:'Bebas Neue',sans-serif; font-size:1.1rem;">$2</div></div>
+      <div class="gallery-card">
+        <img src="https://i.postimg.cc/hh4kLwKR/IMG-5400.jpg" alt="Deer Figurine"/>
+        <div class="gallery-info"><span class="gallery-name">Deer Figurine</span><span class="gallery-price">$2</span></div>
       </div>
-      <div style="position:relative; overflow:hidden; background:var(--mid); border:1px solid var(--border);">
-        <img src="https://i.postimg.cc/14RkGTyR/IMG-5401.jpg" alt="Aircraft Carrier" style="width:100%; height:220px; object-fit:cover; display:block; transition:transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"/>
-        <div style="padding:1rem;"><div style="font-family:'Bebas Neue',sans-serif; font-size:1.2rem; letter-spacing:1px;">Aircraft Carrier</div><div style="color:var(--accent); font-family:'Bebas Neue',sans-serif; font-size:1.1rem;">$3</div></div>
+      <div class="gallery-card">
+        <img src="https://i.postimg.cc/14RkGTyR/IMG-5401.jpg" alt="Aircraft Carrier"/>
+        <div class="gallery-info"><span class="gallery-name">Aircraft Carrier</span><span class="gallery-price">$3</span></div>
       </div>
     </div>
   </section>
 
   <!-- MENU -->
 
-  <section id="menu" style="background: var(--black); border-top: 1px solid var(--border);">
-    <div class="section-tag">Pricing</div>
-    <div class="section-title">Our Menu</div>
-    <p class="section-sub">All items available in black, white, gray, or red. Just mention your color in the order form!</p>
-    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap:1px; background:var(--border); border:1px solid var(--border); max-width:900px;">
-      <div style="background:var(--gray); padding:2rem;">
-        <div style="font-size:1.8rem; margin-bottom:0.8rem;">🎹</div>
-        <div style="font-family:'Bebas Neue',sans-serif; font-size:1.4rem; letter-spacing:1px; margin-bottom:0.5rem;">Keyboard Clicker Keychain</div>
-        <div style="font-family:'Bebas Neue',sans-serif; font-size:2rem; color:var(--accent); margin-bottom:0.5rem;">$1</div>
-        <p style="color:#666; font-size:0.85rem; line-height:1.6;">Want fewer or more clicker blocks? Just mention it in the order form!</p>
-      </div>
-      <div style="background:var(--gray); padding:2rem;">
-        <div style="font-size:1.8rem; margin-bottom:0.8rem;">🦎</div>
-        <div style="font-family:'Bebas Neue',sans-serif; font-size:1.4rem; letter-spacing:1px; margin-bottom:0.5rem;">Articulated Lizard</div>
-        <div style="font-family:'Bebas Neue',sans-serif; font-size:2rem; color:var(--accent); margin-bottom:0.5rem;">$2</div>
-        <p style="color:#666; font-size:0.85rem; line-height:1.6;">Flexible and fun — great for kids and desk toys.</p>
-      </div>
-      <div style="background:var(--gray); padding:2rem;">
-        <div style="font-size:1.8rem; margin-bottom:0.8rem;">🐱</div>
-        <div style="font-family:'Bebas Neue',sans-serif; font-size:1.4rem; letter-spacing:1px; margin-bottom:0.5rem;">Cat Figurine</div>
-        <div style="font-family:'Bebas Neue',sans-serif; font-size:2rem; color:var(--accent); margin-bottom:0.5rem;">$2</div>
-        <p style="color:#666; font-size:0.85rem; line-height:1.6;">A detailed cat figurine — perfect as a gift or display piece.</p>
-      </div>
-      <div style="background:var(--gray); padding:2rem;">
-        <div style="font-size:1.8rem; margin-bottom:0.8rem;">🦌</div>
-        <div style="font-family:'Bebas Neue',sans-serif; font-size:1.4rem; letter-spacing:1px; margin-bottom:0.5rem;">Deer Figurine</div>
-        <div style="font-family:'Bebas Neue',sans-serif; font-size:2rem; color:var(--accent); margin-bottom:0.5rem;">$2</div>
-        <p style="color:#666; font-size:0.85rem; line-height:1.6;">A beautiful deer figurine — great for decoration or as a unique gift.</p>
-      </div>
-      <div style="background:var(--gray); padding:2rem;">
-        <div style="font-size:1.8rem; margin-bottom:0.8rem;">🚢</div>
-        <div style="font-family:'Bebas Neue',sans-serif; font-size:1.4rem; letter-spacing:1px; margin-bottom:0.5rem;">Aircraft Carrier</div>
-        <div style="font-family:'Bebas Neue',sans-serif; font-size:2rem; color:var(--accent); margin-bottom:0.5rem;">$3</div>
-        <p style="color:#666; font-size:0.85rem; line-height:1.6;">A detailed miniature aircraft carrier — perfect for collectors and military fans.</p>
-      </div>
+  <section id="menu">
+    <div class="section-tag reveal">Pricing</div>
+    <div class="section-title reveal">Our Menu</div>
+    <p class="section-sub reveal">All items available in black, white, gray, or red. Just mention your color in the order form!</p>
+    <div class="menu-grid reveal">
+      <div class="menu-card"><div class="menu-icon">🎹</div><div class="menu-name">Keyboard Clicker Keychain</div><div class="menu-price">$1</div><p class="menu-desc">Want fewer or more clicker blocks? Just mention it in the order form!</p></div>
+      <div class="menu-card"><div class="menu-icon">🦎</div><div class="menu-name">Articulated Lizard</div><div class="menu-price">$2</div><p class="menu-desc">Flexible and fun — great for kids and desk toys.</p></div>
+      <div class="menu-card"><div class="menu-icon">🐱</div><div class="menu-name">Cat Figurine</div><div class="menu-price">$2</div><p class="menu-desc">A detailed cat figurine — perfect as a gift or display piece.</p></div>
+      <div class="menu-card"><div class="menu-icon">🦌</div><div class="menu-name">Deer Figurine</div><div class="menu-price">$2</div><p class="menu-desc">A beautiful deer figurine — great for decoration or as a unique gift.</p></div>
+      <div class="menu-card"><div class="menu-icon">🚢</div><div class="menu-name">Aircraft Carrier</div><div class="menu-price">$3</div><p class="menu-desc">A detailed miniature aircraft carrier — perfect for collectors and military fans.</p></div>
     </div>
-    <p style="margin-top:2rem; color:#666; font-size:0.85rem;">Don't see what you want? <a href="#contact" style="color:var(--accent);" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'}); return false;">Send us a custom order!</a></p>
+    <p class="menu-note reveal">Don't see what you want? <a href="#contact">Send us a custom order!</a></p>
   </section>
 
+  <!-- WHY US -->
+
   <section id="why">
-    <div class="section-tag">Why Choose Us</div>
-    <div class="section-title">Built Different</div>
-    <p class="section-sub">We take 3D printing seriously. Here's what sets us apart.</p>
-    <div class="why-grid">
-      <div class="why-card"><div class="why-num">01</div><div class="why-title">Strong Filament</div><p class="why-desc">We only use PLA+ — tougher and more durable than regular PLA. No brittle prints, no breaks mid-tube.</p></div>
-      <div class="why-card"><div class="why-num">02</div><div class="why-title">10 Color Options</div><p class="why-desc">Currently available in black, white, gray, and red — more colors coming soon as the business grows!</p></div>
+    <div class="section-tag reveal">Why Choose Us</div>
+    <div class="section-title reveal">Built Different</div>
+    <p class="section-sub reveal">We take 3D printing seriously. Here's what sets us apart.</p>
+    <div class="why-grid reveal">
+      <div class="why-card"><div class="why-num">01</div><div class="why-title">Quality Filament</div><p class="why-desc">We print with PLA — a clean, reliable material that gives you consistent results and a great finish on every order.</p></div>
+      <div class="why-card"><div class="why-num">02</div><div class="why-title">4 Color Options</div><p class="why-desc">Currently available in black, white, gray, and red — more colors coming soon as the business grows!</p></div>
       <div class="why-card"><div class="why-num">03</div><div class="why-title">Toys & Useful Items</div><p class="why-desc">From fun toys for kids to handy everyday items like can coolers and AirPod cases — if it can be printed, we'll make it for you.</p></div>
       <div class="why-card"><div class="why-num">04</div><div class="why-title">Affordable Pricing</div><p class="why-desc">Quality printing doesn't have to cost a fortune. We keep prices fair so you can order more and spend less.</p></div>
     </div>
   </section>
 
+  <!-- CONTACT -->
+
   <section id="contact">
-    <div class="section-tag">Get In Touch</div>
-    <div class="section-title">Place an Order</div>
-    <p class="section-sub">Ready to print? Fill out the form or reach out directly and we'll get back to you fast.</p>
-    <div class="contact-inner">
+    <div class="section-tag reveal">Get In Touch</div>
+    <div class="section-title reveal">Place an Order</div>
+    <p class="section-sub reveal">Ready to print? Fill out the form or reach out directly and we'll get back to you fast.</p>
+    <div class="contact-inner reveal">
       <div class="contact-left">
-        <div class="contact-item"><div class="contact-icon">📧</div><div><div class="contact-label">Email</div><div class="contact-value">brycepheasant@icloud.com</div></div></div>
+        <div class="contact-item">
+          <div class="contact-icon">📧</div>
+          <div>
+            <div class="contact-label">Email</div>
+            <div class="contact-value">brycepheasant@icloud.com</div>
+          </div>
+        </div>
       </div>
-      <div class="contact-right"><form action="https://formspree.io/f/xpqbrpll" method="POST">
-        <div class="form-group"><input type="text" name="name" placeholder="Your Name" /></div>
-        <div class="form-group"><input type="email" name="email" placeholder="Your Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$" title="Please enter a valid email address" /></div>
-        <div class="form-group"><input type="text" name="item" placeholder="What do you need printed?" /></div>
-        <div class="form-group"><textarea name="message" placeholder="Tell us more — color, quantity, size, any details..."></textarea></div>
-        <div id="form-error" style="color:#ff3c00; font-size:0.85rem; margin-bottom:0.8rem; display:none;">⚠️ Please fill in all fields and enter a valid email address.</div>
-<button type="submit" class="btn-primary" style="width:100%;" onclick="
-  var nameInput=document.querySelector('input[name=name]');
-  var emailInput=document.querySelector('input[name=email]');
-  var itemInput=document.querySelector('input[name=item]');
-  var msgInput=document.querySelector('textarea[name=message]');
-  var err=document.getElementById('form-error');
-  var emailValid=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(emailInput.value);
-  var valid=true;
-  [nameInput,itemInput,msgInput].forEach(function(el){
-    if(!el.value){el.style.borderColor='#ff3c00'; valid=false;}
-    else{el.style.borderColor='';}
-  });
-  if(!emailInput.value||!emailValid){emailInput.style.borderColor='#ff3c00'; valid=false;}
-  else{emailInput.style.borderColor='';}
-  if(!valid){err.style.display='block'; return false;}
-  err.style.display='none';
-">Send Order Request</button></form>
+      <div class="contact-right">
+        <form action="https://formspree.io/f/xpqbrpll" method="POST" id="order-form">
+          <div class="form-group"><input type="text" name="name" placeholder="Your Name" /></div>
+          <div class="form-group"><input type="email" name="email" placeholder="Your Email" required /></div>
+          <div class="form-group"><input type="text" name="item" placeholder="What do you need printed?" /></div>
+          <div class="form-group"><textarea name="message" placeholder="Tell us more — color, quantity, size, any details..."></textarea></div>
+          <div id="form-error">⚠️ Please fill in all fields and enter a valid email address.</div>
+          <button type="submit" class="btn-primary" style="width:100%;">Send Order Request</button>
+        </form>
       </div>
     </div>
   </section>
+
+  <!-- FOOTER -->
 
   <footer>
     <div class="footer-logo"><span>B</span>ryce's 3D Prints</div>
     <div class="footer-copy">© 2026 Bryce's 3D Prints · All rights reserved</div>
   </footer>
+
+  <script>
+    // Smooth scroll for all anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+      });
+    });
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    reveals.forEach(r => obs.observe(r));
+
+    // Form validation
+    document.getElementById('order-form').addEventListener('submit', function(e) {
+      const name = this.querySelector('input[name=name]');
+      const email = this.querySelector('input[name=email]');
+      const item = this.querySelector('input[name=item]');
+      const msg = this.querySelector('textarea[name=message]');
+      const err = document.getElementById('form-error');
+      const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.value);
+      let valid = true;
+      [name, item, msg].forEach(el => {
+        if (!el.value.trim()) { el.style.borderColor = '#ff3c00'; valid = false; }
+        else { el.style.borderColor = ''; }
+      });
+      if (!email.value || !emailValid) { email.style.borderColor = '#ff3c00'; valid = false; }
+      else { email.style.borderColor = ''; }
+      if (!valid) { e.preventDefault(); err.style.display = 'block'; }
+      else { err.style.display = 'none'; }
+    });
+  </script>
 
 </body>
 </html>

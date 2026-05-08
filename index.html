@@ -93,7 +93,9 @@ section { padding: 6rem 3rem; }
 
 /* SERVICES */
 #services { background: var(--black); }
-.services-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+.services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+@media (max-width: 900px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 500px) { .services-grid { grid-template-columns: 1fr; } }
 .service-card { background: var(--gray); padding: 2.5rem 2rem; transition: background .2s; position: relative; overflow: hidden; }
 .service-card::before { content:''; position:absolute; top:0; left:0; width:3px; height:0; background:var(--accent); transition:height .3s ease; }
 .service-card:hover::before { height: 100%; }
@@ -341,7 +343,7 @@ footer { background: var(--black); border-top: 1px solid var(--border); padding:
   <section id="gallery">
     <div class="section-tag reveal">Our Work</div>
     <div class="section-title reveal">See What We Make</div>
-    <p class="section-sub reveal">Real prints, real quality — all available in black, white, gray, or red.</p>
+    <p class="section-sub reveal">Real prints, real quality — available in black, white, gray, red, gold, or rainbow (PLA+).</p>
     <div class="gallery-grid reveal">
       <div class="gallery-card">
         <img src="https://i.postimg.cc/D4zR7Wx1/IMG-5395.jpg" alt="Articulated Lizard"/>
@@ -379,7 +381,7 @@ footer { background: var(--black); border-top: 1px solid var(--border); padding:
   <section id="menu">
     <div class="section-tag reveal">Pricing</div>
     <div class="section-title reveal">Our Menu</div>
-    <p class="section-sub reveal">All items available in black, white, gray, or red. Just mention your color in the order form!</p>
+    <p class="section-sub reveal">All items available in black, white, gray, red, gold, or rainbow (PLA+). Just mention your color in the order form!</p>
     <div class="menu-grid reveal">
       <div class="menu-card"><div class="menu-icon">🎹</div><div class="menu-name">Keyboard Clicker Keychain</div><div class="menu-price">$1</div><p class="menu-desc">Want fewer or more clicker blocks? Just mention it in the order form!</p></div>
       <div class="menu-card"><div class="menu-icon">🦎</div><div class="menu-name">Articulated Lizard</div><div class="menu-price">$2</div><p class="menu-desc">Flexible and fun — great for kids and desk toys.</p></div>
@@ -426,8 +428,18 @@ footer { background: var(--black); border-top: 1px solid var(--border); padding:
           <div class="form-group"><input type="email" name="email" placeholder="Your Email" required /></div>
           <div class="form-group"><input type="text" name="item" placeholder="What do you need printed?" /></div>
           <div class="form-group"><textarea name="message" placeholder="Tell us more — color, quantity, size, any details..."></textarea></div>
-          <div id="form-error">⚠️ Please fill in all fields and enter a valid email address.</div>
-          <button type="submit" class="btn-primary" style="width:100%;">Send Order Request</button>
+          <div style="font-family:'DM Sans',sans-serif; font-size:0.72rem; letter-spacing:2px; text-transform:uppercase; color:var(--accent); margin-bottom:0.8rem; margin-top:0.4rem;">Shipping Address</div>
+          <div class="form-group"><input type="text" name="address" placeholder="Street Address" /></div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.8rem;">
+            <div class="form-group" style="margin-bottom:0;"><input type="text" name="city" placeholder="City" /></div>
+            <div class="form-group" style="margin-bottom:0;"><input type="text" name="state" placeholder="State / Province" /></div>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.8rem; margin-top:0.8rem;">
+            <div class="form-group" style="margin-bottom:0;"><input type="text" name="zip" placeholder="ZIP / Postal Code" /></div>
+            <div class="form-group" style="margin-bottom:0;"><input type="text" name="country" placeholder="Country" /></div>
+          </div>
+          <div id="form-error" style="margin-top:0.8rem;">⚠️ Please fill in all fields and enter a valid email address.</div>
+          <button type="submit" class="btn-primary" style="width:100%; margin-top:1rem;">Send Order Request</button>
         </form>
       </div>
     </div>
@@ -494,10 +506,15 @@ footer { background: var(--black); border-top: 1px solid var(--border); padding:
       const email = this.querySelector('input[name=email]');
       const item = this.querySelector('input[name=item]');
       const msg = this.querySelector('textarea[name=message]');
+      const address = this.querySelector('input[name=address]');
+      const city = this.querySelector('input[name=city]');
+      const state = this.querySelector('input[name=state]');
+      const zip = this.querySelector('input[name=zip]');
+      const country = this.querySelector('input[name=country]');
       const err = document.getElementById('form-error');
       const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.value);
       let valid = true;
-      [name, item, msg].forEach(el => {
+      [name, item, msg, address, city, state, zip, country].forEach(el => {
         if (!el.value.trim()) { el.style.borderColor = '#ff3c00'; valid = false; }
         else { el.style.borderColor = ''; }
       });

@@ -172,7 +172,41 @@ footer { background: var(--black); border-top: 1px solid var(--border); padding:
 .reveal { opacity: 0; transform: translateY(22px); transition: opacity .6s ease, transform .6s ease; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
-@media (max-width: 700px) {
+/* FAQ */
+#faq { background: var(--black); border-top: 1px solid var(--border); }
+.faq-list { max-width: 800px; display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); }
+.faq-item { background: var(--gray); overflow: hidden; }
+.faq-question {
+  width: 100%; background: none; border: none; color: var(--white);
+  font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 500;
+  padding: 1.4rem 1.8rem; text-align: left; cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 1rem; transition: background .2s;
+}
+.faq-question:hover { background: var(--mid); }
+.faq-arrow { font-size: 0.8rem; color: var(--accent); transition: transform .3s; flex-shrink: 0; }
+.faq-item.open .faq-arrow { transform: rotate(180deg); }
+.faq-answer {
+  max-height: 0; overflow: hidden;
+  transition: max-height .35s ease, padding .35s ease;
+  padding: 0 1.8rem;
+  color: #666; font-size: 0.88rem; line-height: 1.75; font-weight: 300;
+}
+.faq-item.open .faq-answer { max-height: 200px; padding: 0 1.8rem 1.4rem; }
+.faq-item.open .faq-question { color: var(--accent); }
+
+/* DIRECT CONTACT */
+#direct-contact { background: var(--gray); border-top: 1px solid var(--border); }
+.direct-contact-inner { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1.5rem; }
+.direct-contact-inner p { color: #666; font-size: 0.95rem; font-weight: 300; line-height: 1.75; max-width: 500px; }
+.email-link {
+  display: inline-flex; align-items: center; gap: 0.75rem;
+  background: var(--mid); border: 1px solid var(--border);
+  color: var(--white); font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem; padding: 1rem 2rem;
+  text-decoration: none; transition: border-color .2s, color .2s;
+}
+.email-link:hover { border-color: var(--accent); color: var(--accent); }
   nav { padding: 1rem 1.5rem; }
   nav ul { gap: 0.8rem; }
   nav ul a { font-size: 0.6rem; letter-spacing: 0.8px; }
@@ -260,6 +294,8 @@ footer { background: var(--black); border-top: 1px solid var(--border); padding:
       <li><a href="#menu">Menu</a></li>
       <li><a href="#why">Why Us</a></li>
       <li><a href="#contact">Contact</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#direct-contact">Direct Contact</a></li>
     </ul>
   </nav>
 
@@ -276,6 +312,8 @@ footer { background: var(--black); border-top: 1px solid var(--border); padding:
       <a href="#menu" data-section="menu"><span class="sb-icon">📋</span> Menu</a>
       <a href="#why" data-section="why"><span class="sb-icon">⭐</span> Why Us</a>
       <a href="#contact" data-section="contact"><span class="sb-icon">📧</span> Contact</a>
+      <a href="#faq" data-section="faq"><span class="sb-icon">❓</span> FAQ</a>
+      <a href="#direct-contact" data-section="direct-contact"><span class="sb-icon">💬</span> Direct Contact</a>
     </aside>
   </div>
 
@@ -446,20 +484,97 @@ footer { background: var(--black); border-top: 1px solid var(--border); padding:
           <div class="form-group"><input type="email" name="email" placeholder="Your Email" required /></div>
           <div class="form-group"><input type="text" name="item" placeholder="What do you need printed?" /></div>
           <div class="form-group"><textarea name="message" placeholder="Tell us more — color, quantity, size, any details..."></textarea></div>
-          <div style="font-family:'DM Sans',sans-serif; font-size:0.72rem; letter-spacing:2px; text-transform:uppercase; color:var(--accent); margin-bottom:0.8rem; margin-top:0.4rem;">Shipping Address</div>
-          <div class="form-group"><input type="text" name="address" placeholder="Street Address" /></div>
-          <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.8rem;">
-            <div class="form-group" style="margin-bottom:0;"><input type="text" name="city" placeholder="City" /></div>
-            <div class="form-group" style="margin-bottom:0;"><input type="text" name="state" placeholder="State / Province" /></div>
-          </div>
-          <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.8rem; margin-top:0.8rem;">
-            <div class="form-group" style="margin-bottom:0;"><input type="text" name="zip" placeholder="ZIP / Postal Code" /></div>
-            <div class="form-group" style="margin-bottom:0;"><input type="text" name="country" placeholder="Country" /></div>
-          </div>
-          <div id="form-error" style="margin-top:0.8rem;">⚠️ Please fill in all fields and enter a valid email address.</div>
-          <button type="submit" class="btn-primary" style="width:100%; margin-top:1rem;">Send Order Request</button>
-        </form>
+
+```
+      <div style="font-family:'DM Sans',sans-serif; font-size:0.72rem; letter-spacing:2px; text-transform:uppercase; color:var(--accent); margin-bottom:0.8rem; margin-top:0.4rem;">Delivery Method</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.8rem; margin-bottom:1.2rem;">
+        <label id="label-ship" style="display:flex; align-items:center; gap:0.6rem; background:var(--mid); border:1px solid var(--accent); padding:0.85rem 1rem; cursor:pointer; font-size:0.85rem; font-weight:500; transition:background .2s;">
+          <input type="radio" name="delivery" value="shipping" checked onchange="toggleDelivery(this.value)" style="accent-color:var(--accent);"/> 🚚 Ship to Me
+        </label>
+        <label id="label-pickup" style="display:flex; align-items:center; gap:0.6rem; background:var(--mid); border:1px solid var(--border); padding:0.85rem 1rem; cursor:pointer; font-size:0.85rem; font-weight:500; transition:background .2s;">
+          <input type="radio" name="delivery" value="pickup" onchange="toggleDelivery(this.value)" style="accent-color:var(--accent);"/> 🤝 Local Pickup
+        </label>
       </div>
+
+      <div id="address-section">
+        <div style="font-family:'DM Sans',sans-serif; font-size:0.72rem; letter-spacing:2px; text-transform:uppercase; color:var(--accent); margin-bottom:0.8rem;">Shipping Address</div>
+        <div style="background:rgba(255,60,0,0.06); border:1px solid rgba(255,60,0,0.2); padding:0.8rem 1rem; font-size:0.82rem; color:#888; line-height:1.6; margin-bottom:1rem;">
+          📦 <strong style="color:var(--white);">Please note:</strong> Shipping costs will be calculated and added to your total based on your location.
+        </div>
+        <div class="form-group"><input type="text" name="address" placeholder="Street Address" /></div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.8rem;">
+          <div class="form-group" style="margin-bottom:0;"><input type="text" name="city" placeholder="City" /></div>
+          <div class="form-group" style="margin-bottom:0;"><input type="text" name="state" placeholder="State / Province" /></div>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.8rem; margin-top:0.8rem;">
+          <div class="form-group" style="margin-bottom:0;"><input type="text" name="zip" placeholder="ZIP / Postal Code" /></div>
+          <div class="form-group" style="margin-bottom:0;"><input type="text" name="country" placeholder="Country" /></div>
+        </div>
+      </div>
+
+      <div id="pickup-note" style="display:none; background:rgba(255,60,0,0.06); border:1px solid rgba(255,60,0,0.2); padding:1rem 1.2rem; font-size:0.85rem; color:#888; line-height:1.6;">
+        🤝 You've selected <strong style="color:var(--white);">local pickup</strong>. Once your order is confirmed we'll contact you to arrange a pickup time and location!
+      </div>
+
+      <div id="form-error" style="margin-top:0.8rem;">⚠️ Please fill in all fields and enter a valid email address.</div>
+      <button type="submit" class="btn-primary" style="width:100%; margin-top:1rem;">Send Order Request</button>
+    </form>
+  </div>
+</div>
+```
+
+  </section>
+
+  <!-- FAQ -->
+
+  <section id="faq">
+    <div class="section-tag reveal">Customer Service</div>
+    <div class="section-title reveal">Frequently Asked Questions</div>
+    <p class="section-sub reveal">Can't find your answer? Reach out directly and we'll get back to you fast.</p>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-question">How do I place an order? <span class="faq-arrow">▼</span></button>
+        <div class="faq-answer">You can place an order by filling out the order form on this page, or by emailing us directly at brycepheasant@icloud.com. Just let us know what you need, your color choice, quantity, and shipping address!</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Can I request a custom print? <span class="faq-arrow">▼</span></button>
+        <div class="faq-answer">Absolutely! We love custom orders. Send us your idea, design file, or description and we'll do our best to bring it to life. Email us at brycepheasant@icloud.com with the details.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">What colors are available? <span class="faq-arrow">▼</span></button>
+        <div class="faq-answer">We currently offer 25 colors including Black, White, Gray, Red, Blue, Green, Yellow, Purple, Skin, Silver, Transparent, Orange, Pink, Wood, Brown, Gold, Neon Purple, Neon Blue, Neon Orange, Neon Green, and Rainbow (PLA+). Check the Colors section for the full list!</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">What material do you print with? <span class="faq-arrow">▼</span></button>
+        <div class="faq-answer">We print with PLA for all colors, and PLA+ for our Rainbow filament. Both are clean, reliable materials that produce great looking prints with a solid finish.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">How long does shipping take? <span class="faq-arrow">▼</span></button>
+        <div class="faq-answer">Shipping times vary depending on your location and the complexity of your order. Please note that shipping costs will be calculated and added to your total based on your location. We'll give you an estimated timeframe and shipping cost when your order is confirmed. We always aim to get your print to you as fast as possible!</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Can I request a specific size? <span class="faq-arrow">▼</span></button>
+        <div class="faq-answer">Yes! Just include the size you need in your order details or email us. We'll do our best to match your requirements as closely as possible.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Do you do bulk orders? <span class="faq-arrow">▼</span></button>
+        <div class="faq-answer">Yes we do! Whether it's for an event, business, or any other occasion, we can handle bulk orders. Contact us with your requirements and we'll work out the details with you.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">How do I pay? <span class="faq-arrow">▼</span></button>
+        <div class="faq-answer">We currently accept payment via email arrangement. Once your order is confirmed we'll send you payment details. We're working on adding more payment options soon!</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIRECT CONTACT -->
+
+  <section id="direct-contact">
+    <div class="direct-contact-inner reveal">
+      <div class="section-tag">Direct Contact</div>
+      <div class="section-title">Still Have Questions?</div>
+      <p>Don't hesitate to reach out directly — whether it's about an order from our menu, a custom request, or anything else. We're happy to help and will get back to you as soon as possible!</p>
+      <a href="mailto:brycepheasant@icloud.com" class="email-link">📧 brycepheasant@icloud.com</a>
     </div>
   </section>
 
@@ -502,7 +617,7 @@ footer { background: var(--black); border-top: 1px solid var(--border); padding:
     });
 
     // Sidebar active section highlight
-    const sections = ['services','colors','gallery','menu','why','contact'];
+    const sections = ['services','colors','gallery','menu','why','contact','faq','direct-contact'];
     const sidebarLinks = document.querySelectorAll('.sidebar a');
     const sectionObserver = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -518,28 +633,116 @@ footer { background: var(--black); border-top: 1px solid var(--border); padding:
       if (el) sectionObserver.observe(el);
     });
 
+    // FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.parentElement;
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+
+    // Delivery toggle
+    function toggleDelivery(val) {
+      const addressSection = document.getElementById('address-section');
+      const pickupNote = document.getElementById('pickup-note');
+      const labelShip = document.getElementById('label-ship');
+      const labelPickup = document.getElementById('label-pickup');
+      if (val === 'pickup') {
+        addressSection.style.display = 'none';
+        pickupNote.style.display = 'block';
+        labelShip.style.borderColor = 'var(--border)';
+        labelPickup.style.borderColor = 'var(--accent)';
+      } else {
+        addressSection.style.display = 'block';
+        pickupNote.style.display = 'none';
+        labelShip.style.borderColor = 'var(--accent)';
+        labelPickup.style.borderColor = 'var(--border)';
+      }
+    }
+
     // Form validation
     document.getElementById('order-form').addEventListener('submit', function(e) {
       const name = this.querySelector('input[name=name]');
       const email = this.querySelector('input[name=email]');
       const item = this.querySelector('input[name=item]');
       const msg = this.querySelector('textarea[name=message]');
-      const address = this.querySelector('input[name=address]');
-      const city = this.querySelector('input[name=city]');
-      const state = this.querySelector('input[name=state]');
-      const zip = this.querySelector('input[name=zip]');
-      const country = this.querySelector('input[name=country]');
       const err = document.getElementById('form-error');
+      const isPickup = this.querySelector('input[name=delivery]:checked').value === 'pickup';
       const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.value);
       let valid = true;
-      [name, item, msg, address, city, state, zip, country].forEach(el => {
-        if (!el.value.trim()) { el.style.borderColor = '#ff3c00'; valid = false; }
-        else { el.style.borderColor = ''; }
-      });
-      if (!email.value || !emailValid) { email.style.borderColor = '#ff3c00'; valid = false; }
-      else { email.style.borderColor = ''; }
-      if (!valid) { e.preventDefault(); err.style.display = 'block'; }
-      else { err.style.display = 'none'; }
+      let errorMsg = '⚠️ Please fix the following:';
+
+      // Name — must have at least 2 words
+      if (!name.value.trim() || name.value.trim().split(/\s+/).length < 2) {
+        name.style.borderColor = '#ff3c00'; valid = false;
+        errorMsg = '⚠️ Please enter your full name (first and last).';
+      } else { name.style.borderColor = ''; }
+
+      // Email
+      if (!email.value || !emailValid) {
+        email.style.borderColor = '#ff3c00'; valid = false;
+        errorMsg = '⚠️ Please enter a valid email address.';
+      } else { email.style.borderColor = ''; }
+
+      // Item — at least 3 characters
+      if (!item.value.trim() || item.value.trim().length < 3) {
+        item.style.borderColor = '#ff3c00'; valid = false;
+        errorMsg = '⚠️ Please describe what you need printed (at least 3 characters).';
+      } else { item.style.borderColor = ''; }
+
+      // Message — at least 10 characters
+      if (!msg.value.trim() || msg.value.trim().length < 10) {
+        msg.style.borderColor = '#ff3c00'; valid = false;
+        errorMsg = '⚠️ Please provide more detail in your message (at least 10 characters).';
+      } else { msg.style.borderColor = ''; }
+
+      if (!isPickup) {
+        const address = this.querySelector('input[name=address]');
+        const city = this.querySelector('input[name=city]');
+        const state = this.querySelector('input[name=state]');
+        const zip = this.querySelector('input[name=zip]');
+        const country = this.querySelector('input[name=country]');
+
+        // Address — must contain a number (real street address)
+        if (!address.value.trim() || !/\d/.test(address.value)) {
+          address.style.borderColor = '#ff3c00'; valid = false;
+          errorMsg = '⚠️ Please enter a valid street address including a number.';
+        } else { address.style.borderColor = ''; }
+
+        // City — at least 2 characters
+        if (!city.value.trim() || city.value.trim().length < 2) {
+          city.style.borderColor = '#ff3c00'; valid = false;
+          errorMsg = '⚠️ Please enter a valid city.';
+        } else { city.style.borderColor = ''; }
+
+        // State — at least 2 characters
+        if (!state.value.trim() || state.value.trim().length < 2) {
+          state.style.borderColor = '#ff3c00'; valid = false;
+          errorMsg = '⚠️ Please enter a valid state or province.';
+        } else { state.style.borderColor = ''; }
+
+        // ZIP — numbers only, 4-10 digits
+        if (!zip.value.trim() || !/^\d{4,10}$/.test(zip.value.trim())) {
+          zip.style.borderColor = '#ff3c00'; valid = false;
+          errorMsg = '⚠️ Please enter a valid ZIP or postal code (numbers only).';
+        } else { zip.style.borderColor = ''; }
+
+        // Country — at least 2 characters
+        if (!country.value.trim() || country.value.trim().length < 2) {
+          country.style.borderColor = '#ff3c00'; valid = false;
+          errorMsg = '⚠️ Please enter a valid country.';
+        } else { country.style.borderColor = ''; }
+      }
+
+      if (!valid) {
+        e.preventDefault();
+        err.style.display = 'block';
+        err.textContent = errorMsg;
+      } else {
+        err.style.display = 'none';
+      }
     });
   </script>
 

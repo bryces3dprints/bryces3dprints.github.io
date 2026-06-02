@@ -164,13 +164,60 @@
     .footer-logo span { color: var(--accent); }
     .footer-copy { font-size: .75rem; color: #444; letter-spacing: 1px; }
 
+    /* DELETE MODAL */
+    .delete-modal { display:none; position:fixed; inset:0; z-index:200; background:rgba(0,0,0,0.8); align-items:center; justify-content:center; }
+    .delete-modal.open { display:flex; }
+    .delete-box { background:var(--gray); border:1px solid var(--border); padding:2rem; width:100%; max-width:360px; margin:1rem; }
+    .delete-box h3 { font-family:'Bebas Neue',sans-serif; font-size:1.5rem; letter-spacing:2px; margin-bottom:0.5rem; }
+    .delete-box p { color:#666; font-size:0.85rem; margin-bottom:1.2rem; line-height:1.6; }
+    .delete-box input { width:100%; background:var(--mid); border:1px solid var(--border); color:var(--white); padding:0.85rem 1rem; font-family:'DM Sans',sans-serif; font-size:0.9rem; outline:none; margin-bottom:0.8rem; transition:border-color .2s; }
+    .delete-box input:focus { border-color:var(--accent); }
+    .delete-error { color:var(--accent); font-size:0.78rem; margin-bottom:0.8rem; display:none; }
+    .delete-btns { display:flex; gap:0.75rem; }
+    .delete-confirm { flex:1; background:var(--accent); color:var(--white); border:none; padding:0.85rem; font-family:'DM Sans',sans-serif; font-size:0.82rem; font-weight:500; letter-spacing:1px; text-transform:uppercase; cursor:pointer; }
+    .delete-cancel { flex:1; background:none; color:#666; border:1px solid var(--border); padding:0.85rem; font-family:'DM Sans',sans-serif; font-size:0.82rem; letter-spacing:1px; text-transform:uppercase; cursor:pointer; transition:border-color .2s; }
+    .delete-cancel:hover { border-color:var(--accent); }
+
     @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
 
     /* REVEAL */
     .reveal { opacity: 0; transform: translateY(22px); transition: opacity .6s ease, transform .6s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    /* FAQ */
+    /* BUNDLES */
+    #bundles { background: var(--black); border-top: 1px solid var(--border); }
+    .bundles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 4rem; }
+    .bundle-card { background: var(--gray); border: 1px solid var(--border); overflow: hidden; transition: border-color .25s; }
+    .bundle-card:hover { border-color: rgba(255,60,0,0.4); }
+    .bundle-img { width: 100%; height: 200px; background: var(--mid); display: flex; align-items: center; justify-content: center; font-size: 3rem; border-bottom: 1px solid var(--border); }
+    .bundle-info { padding: 1.5rem; }
+    .bundle-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 1px; margin-bottom: 0.5rem; }
+    .bundle-items { color: #666; font-size: 0.82rem; line-height: 1.7; font-weight: 300; margin-bottom: 1rem; }
+    .bundle-items span { color: #888; }
+    .bundle-pricing { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.2rem; }
+    .bundle-original { font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; color: #444; text-decoration: line-through; }
+    .bundle-price { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--accent); }
+    .bundle-save { background: rgba(255,60,0,0.1); border: 1px solid rgba(255,60,0,0.25); color: var(--accent); font-size: 0.65rem; letter-spacing: 1.5px; text-transform: uppercase; padding: 0.2rem 0.6rem; }
+    .bundle-btn { display: block; width: 100%; background: var(--accent); color: var(--white); border: none; padding: 0.85rem; font-family: 'DM Sans', sans-serif; font-size: 0.82rem; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer; text-decoration: none; text-align: center; transition: opacity .2s; }
+    .bundle-btn:hover { opacity: 0.85; }
+
+    /* SUGGESTIONS */
+    .vote-section { background: var(--gray); border: 1px solid var(--border); padding: 2.5rem; max-width: 800px; }
+    .vote-title { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 2px; margin-bottom: 0.5rem; }
+    .vote-sub { color: #666; font-size: 0.88rem; line-height: 1.7; font-weight: 300; margin-bottom: 2rem; }
+    .suggest-form { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 2rem; }
+    .suggest-input { flex: 1; min-width: 200px; background: var(--mid); border: 1px solid var(--border); color: var(--white); padding: 0.85rem 1rem; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; outline: none; transition: border-color .2s; }
+    .suggest-input:focus { border-color: var(--accent); }
+    .suggest-name-input { width: 180px; background: var(--mid); border: 1px solid var(--border); color: var(--white); padding: 0.85rem 1rem; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; outline: none; transition: border-color .2s; }
+    .suggest-name-input:focus { border-color: var(--accent); }
+    .suggest-btn { background: var(--accent); color: var(--white); border: none; padding: 0.85rem 1.5rem; font-family: 'DM Sans', sans-serif; font-size: 0.82rem; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; transition: opacity .2s; white-space: nowrap; }
+    .suggest-btn:hover { opacity: 0.85; }
+    .comments-list { display: flex; flex-direction: column; gap: 0.75rem; }
+    .comment-item { background: var(--mid); border: 1px solid var(--border); padding: 1rem 1.2rem; }
+    .comment-name { font-size: 0.72rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 0.3rem; }
+    .comment-text { font-size: 0.9rem; color: #bbb; line-height: 1.6; }
+    .comment-time { font-size: 0.65rem; color: #444; margin-top: 0.3rem; }
+    .no-comments { color: #444; font-size: 0.88rem; font-style: italic; }
     #faq { background: var(--black); border-top: 1px solid var(--border); }
     .faq-list { max-width: 800px; display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); }
     .faq-item { background: var(--gray); overflow: hidden; }
@@ -287,6 +334,7 @@
       <li><a href="#colors">Colors</a></li>
       <li><a href="#gallery">Gallery</a></li>
       <li><a href="#menu">Menu</a></li>
+      <li><a href="#bundles">Bundles</a></li>
       <li><a href="#why">Why Us</a></li>
       <li><a href="#contact">Contact</a></li>
       <li><a href="#faq">FAQ</a></li>
@@ -304,6 +352,7 @@
       <a href="#colors" data-section="colors"><span class="sb-icon">🎨</span> Colors</a>
       <a href="#gallery" data-section="gallery"><span class="sb-icon">🖼</span> Gallery</a>
       <a href="#menu" data-section="menu"><span class="sb-icon">📋</span> Menu</a>
+      <a href="#bundles" data-section="bundles"><span class="sb-icon">📦</span> Bundles</a>
       <a href="#why" data-section="why"><span class="sb-icon">⭐</span> Why Us</a>
       <a href="#contact" data-section="contact"><span class="sb-icon">📧</span> Contact</a>
       <a href="#faq" data-section="faq"><span class="sb-icon">❓</span> FAQ</a>
@@ -390,6 +439,7 @@
       <div class="gallery-card">
         <img src="https://i.postimg.cc/D4zR7Wx1/IMG-5395.jpg" alt="Articulated Lizard"/>
         <div class="gallery-info"><span class="gallery-name">Articulated Lizard</span><span class="gallery-price">$2</span></div>
+        <div style="padding:0 1.2rem 1rem; font-size:0.75rem; color:#666; line-height:1.5;">💡 Order in neon? Charge with a flashlight and it glows in the dark!</div>
       </div>
       <div class="gallery-card">
         <img src="https://i.postimg.cc/7JLjqCKP/IMG-5396.jpg" alt="Keyboard Clicker Keychain 2 Block"/>
@@ -425,7 +475,7 @@
     <p class="section-sub reveal">All items available in 25 colors including neons, metallics, and multi-color (PLA+). Just mention your color in the order form!</p>
     <div class="menu-grid reveal">
       <div class="menu-card"><div class="menu-icon">🎹</div><div class="menu-name">Keyboard Clicker Keychain</div><div class="menu-price">$1</div><p class="menu-desc">Want fewer or more clicker blocks? Just mention it in the order form!</p></div>
-      <div class="menu-card"><div class="menu-icon">🦎</div><div class="menu-name">Articulated Lizard</div><div class="menu-price">$2</div><p class="menu-desc">Flexible and fun — great for kids and desk toys.</p></div>
+      <div class="menu-card"><div class="menu-icon">🦎</div><div class="menu-name">Articulated Lizard</div><div class="menu-price">$2</div><p class="menu-desc">Flexible and fun — great for kids and desk toys.</p><p style="margin-top:0.5rem;font-size:0.78rem;color:var(--accent);">💡 Order in neon and it glows in the dark! Charge by circling a flashlight over every spot, then take it into the dark.</p></div>
       <div class="menu-card"><div class="menu-icon">🐱</div><div class="menu-name">Cat Figurine</div><div class="menu-price">$2</div><p class="menu-desc">A detailed cat figurine — perfect as a gift or display piece.</p></div>
       <div class="menu-card"><div class="menu-icon">🦌</div><div class="menu-name">Deer Figurine</div><div class="menu-price">$2</div><p class="menu-desc">A beautiful deer figurine — great for decoration or as a unique gift.</p></div>
       <div class="menu-card"><div class="menu-icon">🚢</div><div class="menu-name">Aircraft Carrier</div><div class="menu-price">$3</div><p class="menu-desc">A detailed miniature aircraft carrier — perfect for collectors and military fans.</p></div>
@@ -508,6 +558,85 @@
     </div>
   </section>
 
+  <!-- BUNDLES -->
+  <section id="bundles">
+    <div class="section-tag reveal">Bundle Deals</div>
+    <div class="section-title reveal">Our Bundles</div>
+    <p class="section-sub reveal">Can't decide? Grab a bundle — pre-picked sets at a discounted price. More bundles coming soon!</p>
+
+    <div class="bundles-grid reveal">
+      <!-- LIZARD BUNDLE -->
+      <div class="bundle-card">
+        <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:2px;">
+          <img src="https://i.postimg.cc/62TXxkQP/IMG-5603.jpg" alt="Red Lizard" style="width:100%;height:110px;object-fit:cover;display:block;"/>
+          <img src="https://i.postimg.cc/Q9V3Z2Mw/IMG-5604.jpg" alt="Gray Lizard" style="width:100%;height:110px;object-fit:cover;display:block;"/>
+          <img src="https://i.postimg.cc/LYhpFcXF/IMG-5605.jpg" alt="Black Lizard" style="width:100%;height:110px;object-fit:cover;display:block;"/>
+          <img src="https://i.postimg.cc/Vr58Px61/IMG-5606.jpg" alt="Gold Lizard" style="width:100%;height:110px;object-fit:cover;display:block;"/>
+          <img src="https://i.postimg.cc/QBf3P8Xr/IMG-5607.jpg" alt="Multi-Color Lizard" style="width:100%;height:110px;object-fit:cover;display:block;"/>
+          <img src="https://i.postimg.cc/jWMb9xRp/IMG-5608.jpg" alt="Neon Lizard 1" style="width:100%;height:110px;object-fit:cover;display:block;"/>
+          <img src="https://i.postimg.cc/gwgW5zGT/IMG-5609.jpg" alt="Neon Lizard 2" style="width:100%;height:110px;object-fit:cover;display:block;"/>
+        </div>
+        <div class="bundle-info">
+          <div class="bundle-name">Lizard Bundle</div>
+          <div class="bundle-items">
+            Includes 7 articulated lizards:<br/>
+            <span>Neon Blue · Neon Green · Gray · Black · Red · Gold · Multi-Color</span>
+          </div>
+          <div style="background:rgba(255,60,0,0.06); border:1px solid rgba(255,60,0,0.2); padding:0.7rem 0.9rem; font-size:0.78rem; color:#888; line-height:1.6; margin-bottom:1rem;">
+            💡 <strong style="color:var(--white);">Neon lizards:</strong> Appear white normally! Charge them by circling a flashlight over every spot for a while — then take them into the dark and they glow!
+          </div>
+          <div class="bundle-pricing">
+            <span class="bundle-original">$14</span>
+            <span class="bundle-price">$10</span>
+            <span class="bundle-save">Save $4</span>
+          </div>
+          <a href="#contact" class="bundle-btn">Order This Bundle</a>
+        </div>
+      </div>
+
+      <!-- ARMY BUNDLE -->
+      <div class="bundle-card">
+        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:2px;">
+          <img src="https://i.postimg.cc/nsFx0jfr/IMG-5610.jpg" alt="Aircraft Carrier" style="width:100%;height:110px;object-fit:cover;display:block;"/>
+          <img src="https://i.postimg.cc/Mc9S46z0/IMG-5611.jpg" alt="Soldier Duck" style="width:100%;height:110px;object-fit:cover;display:block;"/>
+          <img src="https://i.postimg.cc/8FZS3pTB/IMG-5612.jpg" alt="Armored Tank" style="width:100%;height:110px;object-fit:cover;display:block;"/>
+          <img src="https://i.postimg.cc/bGmhMyqb/IMG-5613.jpg" alt="F-35 Jet" style="width:100%;height:110px;object-fit:cover;display:block;"/>
+          <img src="https://i.postimg.cc/5HsVG4fC/IMG-5614.jpg" alt="Military Jeep Front" style="width:100%;height:110px;object-fit:cover;display:block;"/>
+          <img src="https://i.postimg.cc/2q0DJkCc/IMG-5616.jpg" alt="Military Jeep Side" style="width:100%;height:110px;object-fit:cover;display:block;"/>
+        </div>
+        <div class="bundle-info">
+          <div class="bundle-name">Army Bundle</div>
+          <div class="bundle-items">
+            Includes 5 military items:<br/>
+            <span>Soldier Rubber Duck (USA) · Armored Tank · F-35 Jet · Aircraft Carrier · Military Jeep</span>
+          </div>
+          <div style="background:rgba(255,60,0,0.06); border:1px solid rgba(255,60,0,0.2); padding:0.7rem 0.9rem; font-size:0.78rem; color:#888; line-height:1.6; margin-bottom:1rem;">
+            🚗 <strong style="color:var(--white);">Military Jeep:</strong> Removable gas canister and spinning wheels — works as a push toy!<br/>
+            💡 <strong style="color:var(--white);">Want just one item?</strong> You can order any of these individually — just mention it in your order form!
+          </div>
+          <div class="bundle-pricing">
+            <span class="bundle-price">$10</span>
+          </div>
+          <a href="#contact" class="bundle-btn">Order This Bundle</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUGGESTIONS -->
+    <div class="vote-section reveal">
+      <div class="vote-title">💬 Suggest a Bundle!</div>
+      <div class="vote-sub">Got an idea for a bundle? Drop it below! See what others are suggesting and help decide what we print next.</div>
+      <div class="suggest-form">
+        <input class="suggest-name-input" id="suggest-name" type="text" placeholder="Your Name" />
+        <input class="suggest-input" id="suggest-input" type="text" placeholder="Your bundle idea (e.g. Star Wars, Dinosaurs...)" />
+        <button class="suggest-btn" onclick="addSuggestion()">Post Idea</button>
+      </div>
+      <div class="comments-list" id="comments-list">
+        <p class="no-comments">No suggestions yet — be the first!</p>
+      </div>
+    </div>
+  </section>
+
   <!-- FAQ -->
   <section id="faq">
     <div class="section-tag reveal">Customer Service</div>
@@ -559,6 +688,20 @@
     </div>
   </section>
 
+  <!-- DELETE MODAL -->
+  <div class="delete-modal" id="delete-modal">
+    <div class="delete-box">
+      <h3>Delete Comment</h3>
+      <p>Enter the admin password to remove this comment for everyone.</p>
+      <input type="password" id="delete-password" placeholder="Enter password" />
+      <div class="delete-error" id="delete-error">Incorrect password. Try again.</div>
+      <div class="delete-btns">
+        <button class="delete-confirm" onclick="confirmDelete()">Delete</button>
+        <button class="delete-cancel" onclick="closeDeleteModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
   <!-- FOOTER -->
   <footer>
     <div class="footer-logo"><span>B</span>ryce's 3D Prints</div>
@@ -597,7 +740,7 @@
     });
 
     // Sidebar active section highlight
-    const sections = ['services','colors','gallery','menu','why','contact','faq','direct-contact'];
+    const sections = ['services','colors','gallery','menu','bundles','why','contact','faq','direct-contact'];
     const sidebarLinks = document.querySelectorAll('.sidebar a');
     const sectionObserver = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -612,6 +755,80 @@
       const el = document.getElementById(id);
       if (el) sectionObserver.observe(el);
     });
+
+    // Bundle suggestions/comments
+    let comments = JSON.parse(localStorage.getItem('bundleComments') || '[]');
+    let pendingDeleteIndex = null;
+
+    function renderComments() {
+      const list = document.getElementById('comments-list');
+      if (comments.length === 0) {
+        list.innerHTML = '<p class="no-comments">No suggestions yet — be the first!</p>';
+        return;
+      }
+      list.innerHTML = [...comments].reverse().map((c, i) => {
+        const realIndex = comments.length - 1 - i;
+        return `
+        <div class="comment-item">
+          <div class="comment-name">${c.name}</div>
+          <div class="comment-text">${c.text}</div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.3rem;">
+            <div class="comment-time">${c.time}</div>
+            <button onclick="deleteComment(${realIndex})" style="background:none; border:1px solid #2a2a2a; color:#444; font-size:0.65rem; letter-spacing:1px; text-transform:uppercase; padding:0.25rem 0.65rem; cursor:pointer; font-family:'DM Sans',sans-serif; transition:border-color .2s, color .2s;" onmouseover="this.style.borderColor='#ff3c00';this.style.color='#ff3c00'" onmouseout="this.style.borderColor='#2a2a2a';this.style.color='#444'">🗑 Delete</button>
+          </div>
+        </div>
+      `}).join('');
+    }
+
+    function deleteComment(index) {
+      pendingDeleteIndex = index;
+      document.getElementById('delete-password').value = '';
+      document.getElementById('delete-error').style.display = 'none';
+      document.getElementById('delete-modal').classList.add('open');
+    }
+
+    function confirmDelete() {
+      const pw = document.getElementById('delete-password').value;
+      if (pw === 'Bundle$Print@2026') {
+        comments.splice(pendingDeleteIndex, 1);
+        localStorage.setItem('bundleComments', JSON.stringify(comments));
+        closeDeleteModal();
+        renderComments();
+      } else {
+        document.getElementById('delete-error').style.display = 'block';
+        document.getElementById('delete-password').style.borderColor = '#ff3c00';
+      }
+    }
+
+    function closeDeleteModal() {
+      document.getElementById('delete-modal').classList.remove('open');
+      pendingDeleteIndex = null;
+    }
+
+    function addSuggestion() {
+      const nameInput = document.getElementById('suggest-name');
+      const textInput = document.getElementById('suggest-input');
+      const name = nameInput.value.trim();
+      const text = textInput.value.trim();
+      if (!name || !text) {
+        if (!name) nameInput.style.borderColor = '#ff3c00';
+        if (!text) textInput.style.borderColor = '#ff3c00';
+        setTimeout(() => { nameInput.style.borderColor = ''; textInput.style.borderColor = ''; }, 2000);
+        return;
+      }
+      const now = new Date();
+      comments.push({
+        name: name,
+        text: text,
+        time: now.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+      });
+      localStorage.setItem('bundleComments', JSON.stringify(comments));
+      nameInput.value = '';
+      textInput.value = '';
+      renderComments();
+    }
+
+    renderComments();
 
     // FAQ accordion
     document.querySelectorAll('.faq-question').forEach(btn => {

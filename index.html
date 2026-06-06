@@ -611,6 +611,9 @@
             Includes 5 military items:<br/>
             <span>Soldier Rubber Duck (USA) · Armored Tank · F-35 Jet · Aircraft Carrier · Military Jeep</span>
           </div>
+          <div style="background:rgba(255,60,0,0.12); border:1px solid rgba(255,60,0,0.4); padding:0.7rem 0.9rem; font-size:0.78rem; color:#fff; line-height:1.6; margin-bottom:0.75rem;">
+            🔒 <strong style="color:var(--accent);">Pre-Ordered & Paid For!</strong> This bundle has been pre-ordered and paid for by a customer and is on its way to them. Want to see it come back? Drop a comment in the suggestion box below and if enough people ask for it, we'll print it again!
+          </div>
           <div style="background:rgba(255,60,0,0.06); border:1px solid rgba(255,60,0,0.2); padding:0.7rem 0.9rem; font-size:0.78rem; color:#888; line-height:1.6; margin-bottom:1rem;">
             🚗 <strong style="color:var(--white);">Military Jeep:</strong> Removable gas canister and spinning wheels — works as a push toy!<br/>
             💡 <strong style="color:var(--white);">Want just one item?</strong> You can order any of these individually — just mention it in your order form!
@@ -874,10 +877,10 @@
       let valid = true;
       let errorMsg = '⚠️ Please fix the following:';
 
-      // Name — must have at least 2 words
-      if (!name.value.trim() || name.value.trim().split(/\s+/).length < 2) {
+      // Name — at least 2 characters
+      if (!name.value.trim() || name.value.trim().length < 2) {
         name.style.borderColor = '#ff3c00'; valid = false;
-        errorMsg = '⚠️ Please enter your full name (first and last).';
+        errorMsg = '⚠️ Please enter your name.';
       } else { name.style.borderColor = ''; }
 
       // Email
@@ -892,10 +895,10 @@
         errorMsg = '⚠️ Please describe what you need printed (at least 3 characters).';
       } else { item.style.borderColor = ''; }
 
-      // Message — at least 10 characters
-      if (!msg.value.trim() || msg.value.trim().length < 10) {
+      // Message — just needs something
+      if (!msg.value.trim()) {
         msg.style.borderColor = '#ff3c00'; valid = false;
-        errorMsg = '⚠️ Please provide more detail in your message (at least 10 characters).';
+        errorMsg = '⚠️ Please provide some details in your message.';
       } else { msg.style.borderColor = ''; }
 
       if (!isPickup) {

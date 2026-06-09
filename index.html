@@ -261,16 +261,14 @@
       text-decoration: none; transition: border-color .2s, color .2s;
     }
     .email-link:hover { border-color: var(--accent); color: var(--accent); }
-      nav { padding: 1rem 1.5rem; }
-      nav ul { gap: 0.8rem; }
-      nav ul a { font-size: 0.6rem; letter-spacing: 0.8px; }
+    @media (max-width: 700px) {
+      nav { padding: 1rem 1.5rem; flex-wrap: wrap; gap: 0.5rem; }
+      nav ul { gap: 0.6rem; flex-wrap: wrap; }
+      nav ul a { font-size: 0.55rem; letter-spacing: 0.5px; }
       .hero { padding: 7rem 1.5rem 3rem; }
       section { padding: 4rem 1.5rem; }
       .why-grid { grid-template-columns: 1fr; }
       footer { padding: 1.5rem; }
-    }
-    @media (max-width: 480px) {
-      nav ul { display: none; }
     }
 
     /* SIDEBAR */
